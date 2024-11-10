@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Main Page</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="x" value="X:" />
+            <h:inputText id="x" value="#{pointCheckBean.x}" required="true" />
+
+            <h:outputLabel for="y" value="Y:" />
+            <h:inputText id="y" value="#{pointCheckBean.y}" required="true" />
+
+            <h:outputLabel for="radius" value="Radius:" />
+            <h:inputText id="radius" value="#{pointCheckBean.radius}" required="true" />
+        </h:panelGrid>
+
+        <h:commandButton value="Check Point" action="#{pointCheckBean.checkPoint}" />
+
+        <h:dataTable value="#{pointCheckBean.results}" var="result">
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{result.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{result.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Radius</f:facet>
+                #{result.radius}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Inside</f:facet>
+                #{result.inside ? 'Yes' : 'No'}
+            </h:column>
+        </h:dataTable>
+
+        <h:commandButton value="Back" action="index?faces-redirect=true" />
+    </h:form>
+</h:body>
+</html>
