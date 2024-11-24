@@ -1,19 +1,21 @@
 package models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Table(name = "check_results")
-@Data
+@Table(name = "point")
+@Getter
+@Setter
 @NoArgsConstructor
-public class CheckResult {
+public class Point {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "x")
     private double x;
@@ -27,10 +29,9 @@ public class CheckResult {
     @Column(name = "inside")
     private boolean inside;
 
-    public CheckResult(double x, double y, int radius, boolean inside) {
+    public Point(double x, double y, int radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.inside = inside;
     }
 }

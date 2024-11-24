@@ -2,13 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-    <title>Start Page</title>
+    <title>Начальная страница</title>
+    <meta charset="UTF-8"/>
+    <h:outputStylesheet library="css" name="index.css"/>
 </h:head>
 <h:body>
-    <h:form>
-        <h:outputText value="Student: Иванов Иван, Group: 123, Variant: 1" />
-        <br/>
-        <h:commandButton value="Go to Main Page" action="#{navigationBean.goToMainPage}" />
-    </h:form>
+    <h:panelGroup layout="block" styleClass="wrapper">
+        <h:panelGroup layout="block" styleClass="header">
+            <p>Нестеров Владислав Алексеевич P3210</p>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="clock-container">
+            <h:panelGroup layout="block" styleClass="time" >
+                <p>Текущее время:</p>
+                <h:outputText value="#{timeBean.currentTime}" id="clock"/>
+            </h:panelGroup>
+            <h:link id="button-to-main" value="Перейти на главную страницу" outcome="#{navigationBean.goToMainPage()}"/>
+            <script>
+                function updateClock() {
+                    const now = new Date();
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    document.getElementById('clock').innerText = hours + ':' + minutes + ':' + seconds;
+                }
+
+                setInterval(updateClock, 7000);
+                updateClock();
+            </script>
+        </h:panelGroup>
+
+    </h:panelGroup>
 </h:body>
 </html>

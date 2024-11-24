@@ -1,0 +1,136 @@
+@font-face {
+    font-family: "Handjet";
+    src: url("#{resource['fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf']}") format("truetype");
+}
+
+* {
+    font-family: Handjet, sans-serif;
+    font-size: 20px;
+}
+
+/*body {*/
+/*    padding: 1.75% 4%;*/
+/*    background-color: #FFF8FA;*/
+/*}*/
+
+header {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    font-size: 32px;
+    font-weight: 575;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+fieldset {
+    border-color: #b57281;
+    transition: .2s;
+}
+
+fieldset:hover {
+    scale: 1.015;
+    box-shadow: #e1d5d9 3px 3px 3px;
+}
+
+.wrapper {
+    display: grid;
+    gap: 1%;
+}
+
+.highlighted {
+    font-weight: 600;
+}
+
+.error {
+    color: #ca1515;
+}
+
+.x-input, .y-input, .r-input {
+    grid-column-start: 1;
+    grid-row-start: 3;
+}
+
+#x-error, #y-error, #r-error {
+    font-size: 23px;
+    margin-top: 10px;
+}
+
+#r-selection {
+    width: 20%;
+}
+
+#r-selection > option {
+    font-size: 16px;
+}
+
+#graph {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 5;
+    align-content: center;
+    text-align: center;
+}
+
+#submit-button {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    font-size: 20px;
+    background-color: #FFCADC;
+    border: rgba(223, 0, 76, 0.62) solid 1px;
+    height: 50px;
+    margin-top: 20px;
+    transition: .25s;
+}
+
+#submit-button:hover {
+    background-color: rgba(241, 177, 186, 0.89);
+}
+
+.axis {
+    stroke-width: 2px;
+    stroke: black;
+}
+
+svg rect:hover, svg path:hover, svg polygon:hover {
+    fill: rgba(39, 147, 236, 1);
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+
+svg text {
+    user-select: none;
+    cursor: default;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.notification.visible {
+    opacity: 1;
+}
+
+.notification.hidden {
+    opacity: 0;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        display: inline;
+    }
+}

@@ -8,6 +8,6 @@ import jakarta.inject.Named;
 public class NavigationBean {
 
     public String goToMainPage() {
-        return "main?faces-redirect=true";
+        return "main";
     }
 }
