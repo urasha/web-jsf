@@ -17,7 +17,7 @@
                 <p>Текущее время:</p>
                 <h:outputText value="#{timeBean.currentTime}" id="clock"/>
             </h:panelGroup>
-            <h:link id="button-to-main" value="Перейти на главную страницу" outcome="#{navigationBean.goToMainPage()}"/>
+            <h:link id="button-to-main" value="Перейти на главную страницу" outcome="main"/>
             <script>
                 function updateClock() {
                     const now = new Date();

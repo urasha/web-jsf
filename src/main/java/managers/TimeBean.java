@@ -1,13 +1,13 @@
-package components;
+package managers;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Named
-@ApplicationScoped
+@SessionScoped
 public class TimeBean implements Serializable {
 
     public String getCurrentTime() {

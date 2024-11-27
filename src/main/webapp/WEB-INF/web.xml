@@ -14,7 +14,21 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+    <error-page>
+        <error-code>400</error-code>
+        <location>/templates/error400.xhtml</location>
+    </error-page>
+
     <welcome-file-list>
         <welcome-file>templates/index.xhtml</welcome-file>
     </welcome-file-list>
+
+    <context-param>
+        <param-name>jakarta.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>

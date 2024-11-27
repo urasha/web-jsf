@@ -4,42 +4,83 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Проверка точек</title>
+    <h:outputStylesheet library="css" name="main.css"/>
 </h:head>
 <h:body>
-    <h:form>
-        <h:panelGrid columns="2">
-            <h:outputLabel for="x" value="X:" />
-            <h:inputText id="x" value="#{pointCheckBean.x}" required="true" />
+    <div class="container">
+        <div class="inputs">
+            <h:form>
+                <fieldset class="x-container">
+                    <legend>Выберите X:</legend>
+                    <h:selectOneMenu id="xMenu" value="#{pointHandler.x}" styleClass="menu">
+                        <f:selectItem itemValue="-2" itemLabel="-2"/>
+                        <f:selectItem itemValue="-1.5" itemLabel="-1.5"/>
+                        <f:selectItem itemValue="-1" itemLabel="-1"/>
+                        <f:selectItem itemValue="-0.5" itemLabel="-0.5"/>
+                        <f:selectItem itemValue="0" itemLabel="0"/>
+                        <f:selectItem itemValue="0.5" itemLabel="0.5"/>
+                        <f:selectItem itemValue="1" itemLabel="1"/>
+                        <f:selectItem itemValue="1.5" itemLabel="1.5"/>
+                        <f:selectItem itemValue="2" itemLabel="2"/>
+                    </h:selectOneMenu>
+                </fieldset>
 
-            <h:outputLabel for="y" value="Y:" />
-            <h:inputText id="y" value="#{pointCheckBean.y}" required="true" />
+                <fieldset class="y-container">
+                    <legend>Выберите Y:</legend>
+                    <h:inputText id="yInput" value="#{pointHandler.y}" styleClass="input"/>
+                </fieldset>
 
-            <h:outputLabel for="radius" value="Radius:" />
-            <h:inputText id="radius" value="#{pointCheckBean.radius}" required="true" />
-        </h:panelGrid>
+                <fieldset class="r-container">
+                    <legend>Выберите R:</legend>
+                    <div class="r-buttons">
+                        <h:commandButton value="1" action="#{pointHandler.setRadius(1)}"
+                                         styleClass="#{pointHandler.radius == 1 ? 'btn-small active' : 'btn-small'}"/>
+                        <h:commandButton value="2" action="#{pointHandler.setRadius(2)}"
+                                         styleClass="#{pointHandler.radius == 2 ? 'btn-small active' : 'btn-small'}"/>
+                        <h:commandButton value="3" action="#{pointHandler.setRadius(3)}"
+                                         styleClass="#{pointHandler.radius == 3 ? 'btn-small active' : 'btn-small'}"/>
+                        <h:commandButton value="4" action="#{pointHandler.setRadius(4)}"
+                                         styleClass="#{pointHandler.radius == 4 ? 'btn-small active' : 'btn-small'}"/>
+                        <h:commandButton value="5" action="#{pointHandler.setRadius(5)}"
+                                         styleClass="#{pointHandler.radius == 5 ? 'btn-small active' : 'btn-small'}"/>
+                    </div>
+                </fieldset>
 
-        <h:commandButton value="Check Point" action="#{pointCheckBean.checkPoint}" />
 
-        <h:dataTable value="#{pointCheckBean.results}" var="result">
-            <h:column>
-                <f:facet name="header">X</f:facet>
-                #{result.x}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Y</f:facet>
-                #{result.y}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Radius</f:facet>
-                #{result.radius}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Inside</f:facet>
-                #{result.inside ? 'Yes' : 'No'}
-            </h:column>
-        </h:dataTable>
+                <h:panelGroup layout="block" styleClass="error-messages">
+                </h:panelGroup>
 
-        <h:commandButton value="Вернуться на начальную страницу" action="index?faces-redirect=true" />
-    </h:form>
+                <h:commandButton value="Проверить попадание" styleClass="btn-submit"
+                                 action="#{pointHandler.handlePoint}"/>
+            </h:form>
+        </div>
+
+        <div class="graph">
+            <p>График</p>
+        </div>
+
+        <div class="table-container">
+            <h:dataTable value="#{pointHandler.results}" var="result" styleClass="table">
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    #{result.x}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    #{result.y}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    #{result.radius}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Попала ли точка</f:facet>
+                    #{result.inside ? 'Да' : 'Нет'}
+                </h:column>
+            </h:dataTable>
+        </div>
+    </div>
 </h:body>
+
+<h:outputScript library="js" name="script.js"/>
 </html>
