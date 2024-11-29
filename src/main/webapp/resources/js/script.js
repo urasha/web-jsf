@@ -36,7 +36,7 @@ function showNotification(message) {
     }, 3000);
 }
 
-function handleFormSubmit(event) {
+function handleFormSubmit() {
     const x = parseFloat(document.querySelector(".x-container input").value);
     const y = parseFloat(document.querySelector('.input').value);
     const r = parseInt(document.querySelector(".btn-small.active").value);
@@ -66,8 +66,6 @@ function handleFormSubmit(event) {
     }
 
     if (!isValid) {
-        // event.preventDefault();
-
         errorMessages.forEach(message => {
             const errorElement = document.createElement('p');
             errorElement.textContent = message;
