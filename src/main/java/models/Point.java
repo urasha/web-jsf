@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "point")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Point {
 

@@ -7,12 +7,16 @@
     <h:outputStylesheet library="css" name="main.css"/>
 </h:head>
 <h:body>
+    <header>
+        <h:link styleClass="link-to-main-page" value="Начальная страница" outcome="index" />
+    </header>
+
     <div class="container">
         <div class="inputs">
             <h:form>
                 <fieldset class="x-container">
                     <legend>Выберите X:</legend>
-                    <h:selectOneMenu id="xMenu" value="#{pointHandler.x}" styleClass="menu">
+                    <h:selectOneMenu onchange="changeX()" id="xMenu" styleClass="menu">
                         <f:selectItem itemValue="-2" itemLabel="-2"/>
                         <f:selectItem itemValue="-1.5" itemLabel="-1.5"/>
                         <f:selectItem itemValue="-1" itemLabel="-1"/>
@@ -23,6 +27,8 @@
                         <f:selectItem itemValue="1.5" itemLabel="1.5"/>
                         <f:selectItem itemValue="2" itemLabel="2"/>
                     </h:selectOneMenu>
+
+                    <h:inputHidden value="#{pointHandler.x}" />
                 </fieldset>
 
                 <fieldset class="y-container">
@@ -46,17 +52,23 @@
                     </div>
                 </fieldset>
 
+                <div id="r-notification" class="notification hidden">Пожалуйста, выберите значение R</div>
 
                 <h:panelGroup layout="block" styleClass="error-messages">
                 </h:panelGroup>
 
-                <h:commandButton value="Проверить попадание" styleClass="btn-submit"
-                                 action="#{pointHandler.handlePoint}"/>
+                <h:commandButton value="Проверить попадание"
+                                 action="#{pointHandler.handlePoint()}"
+                                 onclick="return handleFormSubmit()"
+                                 styleClass="btn-submit"
+                >
+                    <f:ajax execute="@form" render="table"/>
+                </h:commandButton>
             </h:form>
         </div>
 
         <div id="graph">
-            <svg width="300" height="300">
+            <svg width="300" height="300" onclick="handleSvg()">
                 <rect x="100" y="150" width="50" height="100" fill="rgba(39, 147, 236, 0.8)"/>
                 <path d="M150,100 A 50 50, 270, 0, 1, 200 150 V150 H150" fill="rgba(39, 147, 236, 0.8)"/>
                 <polygon points="150,200 150,150 250,150" fill="rgba(39, 147, 236, 0.8)"/>
@@ -78,8 +90,8 @@
                 <line class="axis" x1="145" x2="155" y1="200" y2="200"/>
                 <line class="axis" x1="145" x2="155" y1="250" y2="250"/>
 
-                <text x="290" y="140" font-weight="bold">X</text>
-                <text x="163" y="15" font-weight="bold">Y</text>
+                <text x="290" y="140">X</text>
+                <text x="163" y="15">Y</text>
 
                 <text x="45" y="140">-R</text>
                 <text x="157" y="255">-R</text>
@@ -95,7 +107,7 @@
         </div>
 
         <div class="table-container">
-            <h:dataTable value="#{pointHandler.results}" var="result" styleClass="table">
+            <h:dataTable value="#{pointHandler.results}" var="result" update="@form" id="table" styleClass="table">
                 <h:column>
                     <f:facet name="header">X</f:facet>
                     #{result.x}

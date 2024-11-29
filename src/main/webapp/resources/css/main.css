@@ -96,7 +96,6 @@ svg text {
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 14px;
     cursor: pointer;
     transition: 0.3s;
     margin: 2px;
@@ -115,7 +114,6 @@ svg text {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
     transition: 0.3s;
 }
 
@@ -125,7 +123,6 @@ svg text {
 
 .menu {
     padding: 5px;
-    font-size: 14px;
 }
 
 .menu option {
@@ -136,10 +133,48 @@ svg text {
     padding: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 14px;
 }
 
 .r-buttons {
     display: flex;
     gap: 5px;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.notification.visible {
+    opacity: 1;
+}
+
+.notification.hidden {
+    opacity: 0;
+}
+.link-to-main-page {
+    margin-left: 5vw;
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.link-to-main-page:hover {
+    background-color: #c9302c;
 }

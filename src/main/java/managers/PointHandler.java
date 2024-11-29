@@ -1,9 +1,11 @@
 package managers;
 
 import db.PointDAO;
+import jakarta.ejb.EJB;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 import models.Point;
@@ -13,12 +15,15 @@ import utils.InputValidator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Named
 @ApplicationScoped
 @Getter
 @Setter
 public class PointHandler implements Serializable {
+
+    private static final Logger logger = Logger.getLogger(PointHandler.class.getName());
 
     @Inject
     private ResponseSender responseSender;
@@ -38,12 +43,15 @@ public class PointHandler implements Serializable {
 
     private final List<Point> results = new ArrayList<>();
 
-    public void handlePoint() {
+    @Transactional
+    public String handlePoint() {
         Point point = new Point(x, y, radius);
+
+        logger.info("Handling point: " + point);
 
         if (!inputValidator.validate(point)) {
             responseSender.sendBadRequest();
-            return;
+            return null;
         }
 
         point.setInside(areaHitValidator.validate(point));
@@ -51,6 +59,6 @@ public class PointHandler implements Serializable {
         results.add(point);
         pointDAO.save(point);
 
-        responseSender.sendRedirect("main.xhtml");
+        return null;
     }
 }
