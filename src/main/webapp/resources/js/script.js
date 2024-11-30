@@ -1,3 +1,8 @@
+let svgPointData = {
+    x: NaN,
+    y: NaN
+};
+
 function handleSvg(event) {
     const r = parseInt(document.querySelector(".btn-small.active").value);
 
@@ -15,6 +20,9 @@ function handleSvg(event) {
     const x = event.clientX - rect.left - svgWidth / 2;
     const y = svgHeight / 2 - (event.clientY - rect.top);
 
+    svgPointData['x'] = x;
+    svgPointData['y'] = y;
+
     const scaledX = ((x / (svgWidth / 2)) * r * 1.5);
     const scaledY = ((y / (svgHeight / 2)) * r * 1.5);
 
@@ -22,6 +30,9 @@ function handleSvg(event) {
     document.querySelector('.input').value = scaledY.toFixed(2);
 
     document.querySelector('.btn-submit').click();
+
+    svgPointData['x'] = NaN;
+    svgPointData['y'] = NaN;
 }
 
 function showNotification(message) {
@@ -72,10 +83,26 @@ function handleFormSubmit() {
             errorElement.style.color = 'red';
             messages.appendChild(errorElement);
         });
+        return;
+    }
 
+    if (!isNaN(svgPointData['x']) && !isNaN(svgPointData['y'])) {
+        drawPointOnSvg();
     }
 }
 
 function changeX() {
     document.querySelector(".x-container input").value = document.querySelector('.menu').value;
+}
+
+function drawPointOnSvg() {
+    const svg = document.querySelector('svg');
+    const point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+    point.setAttribute("cx", svg.getBoundingClientRect().width / 2 + svgPointData['x']);
+    point.setAttribute("cy", svg.getBoundingClientRect().height / 2 - svgPointData['y']);
+    point.setAttribute("r", 3);
+    point.setAttribute("fill", "red");
+
+    svg.appendChild(point);
 }

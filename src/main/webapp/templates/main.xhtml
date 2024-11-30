@@ -59,7 +59,7 @@
 
                 <h:commandButton value="Проверить попадание"
                                  action="#{pointHandler.handlePoint()}"
-                                 onclick="return handleFormSubmit()"
+                                 onclick="return handleFormSubmit(event)"
                                  styleClass="btn-submit"
                 >
                     <f:ajax execute="@form" render="table"/>
