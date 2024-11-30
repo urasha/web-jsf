@@ -1,7 +1,6 @@
 package managers;
 
 import db.PointDAO;
-import jakarta.ejb.EJB;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;

@@ -20,7 +20,7 @@
     </error-page>
 
     <welcome-file-list>
-        <welcome-file>templates/index.xhtml</welcome-file>
+        <welcome-file>/templates/index.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>
