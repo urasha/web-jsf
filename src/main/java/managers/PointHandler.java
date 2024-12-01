@@ -1,6 +1,7 @@
 package managers;
 
-import db.PointDAO;
+import com.fasterxml.jackson.core.JsonProcessingException;import com.fasterxml.jackson.databind.ObjectMapper;import db.PointDAO;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -42,6 +43,11 @@ public class PointHandler implements Serializable {
 
     private final List<Point> results = new ArrayList<>();
 
+    @PostConstruct
+    public void init() {
+        results.addAll(pointDAO.getAllPoints());
+    }
+
     @Transactional
     public String handlePoint() {
         Point point = new Point(x, y, radius);
@@ -59,5 +65,15 @@ public class PointHandler implements Serializable {
         pointDAO.save(point);
 
         return null;
+    }
+
+    public String getResultsAsJson() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(results);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "[]";
+        }
     }
 }

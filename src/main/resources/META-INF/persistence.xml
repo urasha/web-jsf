@@ -13,7 +13,7 @@
             <property name="jakarta.persistence.jdbc.user" value="urasha"/>
             <property name="jakarta.persistence.jdbc.password" value="galaxyTab4"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>

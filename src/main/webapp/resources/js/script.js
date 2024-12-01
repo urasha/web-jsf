@@ -108,7 +108,8 @@ function handleFormSubmit() {
             errorElement.style.color = 'red';
             messages.appendChild(errorElement);
         });
-        return;
+
+        return false;
     }
 
     if (!isNaN(svgPointData['x']) && !isNaN(svgPointData['y'])) {

@@ -129,5 +129,28 @@
     </div>
 </h:body>
 
+<h:outputScript>
+    const points = JSON.parse('#{pointHandler.resultsAsJson}');
+
+    function drawInitialPoints() {
+        points.forEach(point => {
+            const svg = document.querySelector('svg');
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+            const scaledX = (point.x / (1.5 * point.radius)) * (svg.getBoundingClientRect().width / 2);
+            const scaledY = (-point.y / (1.5 * point.radius)) * (svg.getBoundingClientRect().height / 2);
+
+            circle.setAttribute("cx", svg.getBoundingClientRect().width / 2 + scaledX);
+            circle.setAttribute("cy", svg.getBoundingClientRect().height / 2 + scaledY);
+            circle.setAttribute("r", 3);
+            circle.setAttribute("fill", point.inside ? "green" : "red");
+
+            svg.appendChild(circle);
+        });
+    }
+
+    window.onload = drawInitialPoints;
+</h:outputScript>
+
 <h:outputScript library="js" name="script.js"/>
 </html>
