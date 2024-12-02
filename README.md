@@ -6,7 +6,7 @@ git clone git@github.com:urasha/WEB_JSF.git
 cd WEB_JSF
 docker compose up --build
 ```
-and go to [http://localhost:8080](http://localhost:8080) when WildFly starts
+and go to [http://localhost:8080](http://localhost:8080/web3/) when WildFly starts
 
 ### Stack
 - JavaServer Faces
