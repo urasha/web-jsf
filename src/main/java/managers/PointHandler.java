@@ -47,7 +47,7 @@ public class PointHandler implements Serializable {
 
     @PostConstruct
     public void init() {
-        x = 0;
+        x = -2;
         y = 0;
         radius = 2;
         results.addAll(pointDAO.getAllPoints());
