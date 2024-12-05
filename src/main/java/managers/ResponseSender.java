@@ -23,14 +23,4 @@ public class ResponseSender implements Serializable {
             e.printStackTrace();
         }
     }
-
-    public void sendRedirect(String location) {
-        try {
-            FacesContext.getCurrentInstance()
-                    .getExternalContext()
-                    .redirect(location);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

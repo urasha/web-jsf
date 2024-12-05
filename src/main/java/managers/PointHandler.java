@@ -1,6 +1,8 @@
 package managers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;import com.fasterxml.jackson.databind.ObjectMapper;import db.PointDAO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import db.PointDAO;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -39,12 +41,15 @@ public class PointHandler implements Serializable {
 
     private double x;
     private double y;
-    private int radius = 2;
+    private int radius;
 
     private final List<Point> results = new ArrayList<>();
 
     @PostConstruct
     public void init() {
+        x = 0;
+        y = 0;
+        radius = 2;
         results.addAll(pointDAO.getAllPoints());
     }
 

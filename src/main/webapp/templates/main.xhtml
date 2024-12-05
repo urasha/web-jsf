@@ -8,7 +8,7 @@
 </h:head>
 <h:body>
     <header>
-        <h:link styleClass="link-to-main-page" value="Начальная страница" outcome="index" />
+        <h:link styleClass="link-to-main-page" value="Начальная страница" outcome="index"/>
     </header>
 
     <div class="container">
@@ -28,7 +28,7 @@
                         <f:selectItem itemValue="2" itemLabel="2"/>
                     </h:selectOneMenu>
 
-                    <h:inputHidden value="#{pointHandler.x}" />
+                    <h:inputHidden value="#{pointHandler.x}"/>
                 </fieldset>
 
                 <fieldset class="y-container">
@@ -97,10 +97,8 @@
                 <text x="157" y="255">-R</text>
                 <text x="157" y="55">R</text>
                 <text x="245" y="140">R</text>
-                <text x="90" y="140">-R/2
-                </text>
-                <text x="190" y="140">R/2
-                </text>
+                <text x="90" y="140">-R/2</text>
+                <text x="190" y="140">R/2</text>
                 <text x="157" y="105">R/2</text>
                 <text x="157" y="205">-R/2</text>
             </svg>
@@ -133,20 +131,20 @@
     const points = JSON.parse('#{pointHandler.resultsAsJson}');
 
     function drawInitialPoints() {
-        points.forEach(point => {
-            const svg = document.querySelector('svg');
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    points.forEach(point => {
+    const svg = document.querySelector('svg');
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
-            const scaledX = (point.x / (1.5 * point.radius)) * (svg.getBoundingClientRect().width / 2);
-            const scaledY = (-point.y / (1.5 * point.radius)) * (svg.getBoundingClientRect().height / 2);
+    const scaledX = (point.x / (1.5 * point.radius)) * (svg.getBoundingClientRect().width / 2);
+    const scaledY = (-point.y / (1.5 * point.radius)) * (svg.getBoundingClientRect().height / 2);
 
-            circle.setAttribute("cx", svg.getBoundingClientRect().width / 2 + scaledX);
-            circle.setAttribute("cy", svg.getBoundingClientRect().height / 2 + scaledY);
-            circle.setAttribute("r", 3);
-            circle.setAttribute("fill", point.inside ? "green" : "red");
+    circle.setAttribute("cx", svg.getBoundingClientRect().width / 2 + scaledX);
+    circle.setAttribute("cy", svg.getBoundingClientRect().height / 2 + scaledY);
+    circle.setAttribute("r", 3);
+    circle.setAttribute("fill", point.inside ? "green" : "red");
 
-            svg.appendChild(circle);
-        });
+    svg.appendChild(circle);
+    });
     }
 
     window.onload = drawInitialPoints;
