@@ -66,8 +66,8 @@ public class PointHandler implements Serializable {
 
         point.setInside(areaHitValidator.validate(point));
 
-        results.add(point);
         pointDAO.save(point);
+        results.add(point);
 
         return null;
     }
