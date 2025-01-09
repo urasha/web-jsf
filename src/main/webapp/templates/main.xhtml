@@ -134,24 +134,24 @@
 
 <h:outputScript>
     function updateGraph(radius) {
-        const svg = document.querySelector('svg');
-        const points = JSON.parse('#{pointHandler.resultsAsJson}');
+    const svg = document.querySelector('svg');
+    const points = JSON.parse('#{pointHandler.resultsAsJson}');
 
-        svg.querySelectorAll('circle').forEach(circle => circle.remove());
+    svg.querySelectorAll('circle').forEach(circle => circle.remove());
 
-        points.forEach(point => {
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    points.forEach(point => {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
-            const scaledX = (point.x / (1.5 * radius)) * (svg.getBoundingClientRect().width / 2);
-            const scaledY = (-point.y / (1.5 * radius)) * (svg.getBoundingClientRect().height / 2);
+    const scaledX = (point.x / (1.5 * radius)) * (svg.getBoundingClientRect().width / 2);
+    const scaledY = (-point.y / (1.5 * radius)) * (svg.getBoundingClientRect().height / 2);
 
-            circle.setAttribute("cx", svg.getBoundingClientRect().width / 2 + scaledX);
-            circle.setAttribute("cy", svg.getBoundingClientRect().height / 2 + scaledY);
-            circle.setAttribute("r", 3);
-            circle.setAttribute("fill", point.inside ? "green" : "red");
+    circle.setAttribute("cx", svg.getBoundingClientRect().width / 2 + scaledX);
+    circle.setAttribute("cy", svg.getBoundingClientRect().height / 2 + scaledY);
+    circle.setAttribute("r", 3);
+    circle.setAttribute("fill", point.inside ? "green" : "red");
 
-            svg.appendChild(circle);
-        });
+    svg.appendChild(circle);
+    });
     }
 
     window.onload = () => updateGraph(#{pointHandler.radius});

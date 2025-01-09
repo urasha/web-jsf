@@ -73,6 +73,8 @@ function getScaledY(y, r) {
 }
 
 function handleFormSubmit() {
+    changeX();
+
     const x = parseFloat(document.querySelector(".x-container input").value);
     const y = parseFloat(document.querySelector('.input').value);
     const r = parseInt(document.querySelector(".btn-small.active").value);

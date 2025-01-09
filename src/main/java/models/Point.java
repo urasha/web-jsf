@@ -15,8 +15,7 @@ import lombok.ToString;
 public class Point {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "point_seq")
-    @SequenceGenerator(name = "point_seq", sequenceName = "point_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

@@ -50,6 +50,7 @@ public class PointHandler implements Serializable {
         x = -2;
         y = 0;
         radius = 2;
+
         results.addAll(pointDAO.getAllPoints());
     }
 

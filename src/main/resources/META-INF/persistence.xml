@@ -1,22 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
-             version="2.2">
-    <persistence-unit name="PersistenceUnit">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+             xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="PersistenceUnit" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>java:/jdbc/PostgresDS</jta-data-source>
         <class>models.Point</class>
-
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@db:1521:FREE"/>
-            <property name="jakarta.persistence.jdbc.password" value="password"/>
-            <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-            <property name="jakarta.persistence.jdbc.user" value="system"/>
-            <property name="hibernate.hbm2ddl.auto" value="create" />
-            <property name="hibernate.current_session_context_class" value="jta"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
-            <property name="hibernate.show_sql" value="true" />
+            <property name="eclipselink.deploy-on-startup" value="true"/>
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
         </properties>
     </persistence-unit>
 </persistence>
