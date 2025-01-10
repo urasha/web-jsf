@@ -10,7 +10,7 @@ and go to [http://localhost:8080/web3](http://localhost:8080/web3/) when WildFly
 
 ### Stack
 - JavaServer Faces
-- JPA + Oracle
+- Eclipse Link JPA + PostgreSQL (local)
 - Maven
 - WildFly + Docker
      
