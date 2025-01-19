@@ -2,7 +2,7 @@
 
 ### Usage
 ```
-git clone git@github.com:urasha/WEB_JSF.git
+git clone https://github.com/urasha/WEB_JSF.git
 cd WEB_JSF
 docker compose up --build
 ```
