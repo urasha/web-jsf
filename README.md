@@ -2,8 +2,8 @@
 
 ### Usage
 ```
-git clone https://github.com/urasha/WEB_JSF.git
-cd WEB_JSF
+git clone https://github.com/urasha/web-jsf.git
+cd web-jsf
 docker compose up --build
 ```
 and go to [http://localhost:8080/web3](http://localhost:8080/web3/) when WildFly starts
